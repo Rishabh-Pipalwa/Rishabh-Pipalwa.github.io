@@ -1,7 +1,506 @@
-<html>
- <head>
- </head>
- <body>
-   <h1>Hello World<h1>
- </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Rishabh Pipalwa — Machine Learning Engineer, Architect & Researcher across domains: algorithmic trading and quant models, generative AI, smart-city computer vision, NASA-backed forecasting. Currently Head of AI at Megaserve Technology.">
+<title>Rishabh Pipalwa — ML/AI Architect &amp; Researcher</title>
+<style>
+:root{
+  --bg:#0a0e14;
+  --panel:#10161f;
+  --panel-2:#141c28;
+  --line:#1e2836;
+  --text:#e9ecf2;
+  --muted:#93a0b4;
+  --faint:#5d6a80;
+  --amber:#e8a33d;
+  --amber-deep:#b97f2e;
+  --pos:#3dd6a3;
+  --serif:Georgia,Cambria,"Times New Roman",serif;
+  --mono:"Cascadia Code",Consolas,"SF Mono",Menlo,monospace;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:#141005}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#141005;padding:.5rem 1rem;z-index:99;font-family:var(--mono)}
+.skip:focus{left:0}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:clamp(20px,5vw,48px)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,14,20,.82);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-size:.95rem;color:var(--text);letter-spacing:.06em}
+.brand b{color:var(--amber);font-weight:700}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.nav-links a:hover{color:var(--amber);text-decoration:none}
+@media (max-width:720px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#mkt{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,20,.25) 0%,rgba(10,14,20,.78) 68%,var(--bg) 100%)}
+.hero-inner{position:relative;padding-block:clamp(88px,14vh,150px) clamp(56px,8vh,88px)}
+.eyebrow{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:.65rem;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);display:inline-block}
+h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(2.7rem,7.5vw,4.8rem);line-height:1.04;
+  letter-spacing:-.01em;margin-top:1.1rem;text-wrap:balance;
+}
+h1 .dot{color:var(--amber)}
+.thesis{
+  max-width:36em;margin-top:1.4rem;font-size:clamp(1.05rem,1.5vw,1.2rem);
+  color:var(--muted);
+}
+.thesis strong{color:var(--text);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.1rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;
+  padding:.72rem 1.25rem;border:1px solid var(--line);border-radius:4px;
+  color:var(--text);background:transparent;transition:border-color .18s,background .18s,color .18s;
+}
+.btn:hover{border-color:var(--amber);text-decoration:none;color:var(--amber)}
+.btn-solid{background:var(--amber);border-color:var(--amber);color:#161005;font-weight:600}
+.btn-solid:hover{background:#f0b356;color:#161005}
+.ticker{
+  display:flex;flex-wrap:wrap;margin-top:3.2rem;
+  border-top:1px solid var(--line);
+  font-variant-numeric:tabular-nums;
+}
+.tick{padding:1rem 1.6rem 0 0;margin-right:1.6rem;border-right:1px solid var(--line)}
+.tick:last-child{border-right:0;margin-right:0}
+.tick b{display:block;font-family:var(--mono);font-size:1.35rem;color:var(--amber);font-weight:600}
+.tick span{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+@media (max-width:720px){.tick{border-right:0;padding-right:0;margin-right:0;width:50%}}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(64px,9vh,104px)}
+section + section{border-top:1px solid var(--line)}
+.sec-head{margin-bottom:2.6rem}
+h2{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(1.65rem,3.2vw,2.25rem);line-height:1.15;
+  margin-top:.9rem;text-wrap:balance;max-width:24em;
+}
+.lede{color:var(--muted);max-width:44em;margin-top:.9rem}
+.prose{max-width:44em;display:grid;gap:1.1rem;color:var(--muted)}
+.prose strong{color:var(--text);font-weight:600}
+
+/* ---------- pipeline ---------- */
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.stage{background:var(--panel);padding:1.5rem 1.4rem 1.7rem;position:relative}
+.stage:hover{background:var(--panel-2)}
+.stage i{
+  font-style:normal;font-family:var(--mono);font-size:.72rem;
+  color:var(--amber);letter-spacing:.14em;
+}
+.stage h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;margin:.55rem 0 .45rem}
+.stage p{font-size:.92rem;color:var(--muted);line-height:1.55}
+@media (max-width:900px){.pipe{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.pipe{grid-template-columns:1fr}}
+
+/* ---------- work ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.3rem}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:1.7rem 1.6rem 1.6rem;display:flex;flex-direction:column;gap:.85rem;
+}
+.card .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-deep)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;line-height:1.25}
+.card p{font-size:.94rem;color:var(--muted);flex-grow:1}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{
+  font-family:var(--mono);font-size:.7rem;color:var(--muted);
+  border:1px solid var(--line);border-radius:99px;padding:.22rem .65rem;white-space:nowrap;
+}
+
+/* ---------- research ---------- */
+.pub{
+  display:grid;grid-template-columns:56px 1fr auto;gap:1.2rem;align-items:baseline;
+  padding:1.05rem 0;border-bottom:1px solid var(--line);
+}
+.pub:first-of-type{border-top:1px solid var(--line)}
+.pub .yr{font-family:var(--mono);font-size:.8rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.pub .ti{font-weight:600;font-size:.98rem;line-height:1.45}
+.pub .ve{font-family:var(--mono);font-size:.74rem;color:var(--amber-deep);text-align:right;white-space:nowrap}
+@media (max-width:680px){.pub{grid-template-columns:56px 1fr}.pub .ve{grid-column:2;text-align:left}}
+.pub-links{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
+.pub-note{font-family:var(--mono);font-size:.76rem;color:var(--faint);margin-top:1.2rem}
+.orcid{color:var(--pos)}
+
+/* ---------- stack ---------- */
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3rem}
+.group{border:1px solid var(--line);border-radius:6px;padding:1.4rem;background:var(--panel)}
+.group h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:.9rem}
+.group ul{list-style:none;display:grid;gap:.45rem}
+.group li{font-size:.92rem;color:var(--muted);padding-left:1rem;position:relative}
+.group li::before{content:"·";position:absolute;left:0;color:var(--amber-deep)}
+
+/* ---------- experience ---------- */
+.xp{border-left:1px solid var(--line);display:grid;gap:2.2rem;padding-left:1.8rem;max-width:52em}
+.role{position:relative}
+.role::before{
+  content:"";position:absolute;left:calc(-1.8rem - 4.5px);top:.5em;
+  width:8px;height:8px;border-radius:50%;background:var(--faint);
+}
+.role.now::before{background:var(--amber);box-shadow:0 0 0 4px rgba(232,163,61,.15)}
+.role h3{font-size:1.08rem;font-weight:600;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem}
+.role .co{font-family:var(--mono);font-size:.78rem;color:var(--amber-deep)}
+.role .pill{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--pos);
+  border:1px solid rgba(61,214,163,.35);border-radius:99px;padding:.1rem .55rem;
+}
+.role .when{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;margin-top:.3rem}
+.role p{color:var(--muted);font-size:.94rem;margin-top:.5rem;max-width:46em}
+.edu{margin-top:2.6rem;border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:1.3rem 1.5rem;max-width:52em;display:grid;gap:.8rem}
+.edu b{font-weight:600}
+.edu span{color:var(--muted)}
+.edu .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-deep)}
+.edu .when{font-family:var(--mono);font-size:.72rem;color:var(--faint)}
+.edu p{font-size:.88rem;color:var(--muted);margin-top:.3rem;max-width:46em}
+
+/* ---------- deliverables (experience) ---------- */
+.deliv-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-deep);margin-top:1.3rem}
+.deliverables{list-style:none;display:grid;gap:.7rem;margin-top:.8rem;max-width:48em}
+.deliverables li{font-size:.92rem;color:var(--muted);padding-left:1.15rem;position:relative;line-height:1.6}
+.deliverables li::before{content:"·";position:absolute;left:0;color:var(--amber);font-weight:700}
+.deliverables b{color:var(--text);font-weight:600}
+
+/* ---------- contact ---------- */
+.contact{padding-block:clamp(72px,11vh,120px)}
+.contact h2{max-width:none}
+.contact .lede{margin-top:1rem}
+.foot{
+  border-top:1px solid var(--line);padding-block:1.6rem;
+  display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.72rem;color:var(--faint);
+}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <span class="brand"><b>RP</b> · rishabhpipalwa</span>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero">
+  <canvas id="mkt" aria-hidden="true"></canvas>
+  <div class="hero-fade" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">ML Engineer · Architect · Researcher</p>
+    <h1>Rishabh Pipalwa<span class="dot">.</span></h1>
+    <p class="thesis">I bridge deep-tech R&amp;D and ultra-low-latency, production-grade AI — <strong>across domains</strong>: high-frequency trading engines, generative financial models, smart-city <strong>computer vision</strong>, and NASA-backed forecasting. Currently <strong>Head of AI at Megaserve Technology</strong>, architecting next-gen fintech platforms and quantitative models.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="https://www.linkedin.com/in/rishabhpipalwa/">LinkedIn ↗</a>
+      <a class="btn" href="https://scholar.google.com/citations?user=6jcJJqAAAAAJ">Google Scholar ↗</a>
+      <a class="btn" href="mailto:rishabhpipalwa@gmail.com">Email me</a>
+    </div>
+    <div class="ticker" role="list" aria-label="Highlights">
+      <div class="tick" role="listitem"><b>13</b><span>production AI engines</span></div>
+      <div class="tick" role="listitem"><b>4</b><span>AI domains in production</span></div>
+      <div class="tick" role="listitem"><b>10</b><span>peer-reviewed publications</span></div>
+      <div class="tick" role="listitem"><b>NASA</b><span>backed research · IIT Delhi</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="about" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">About</p>
+      <h2>So… what do you actually do?</h2>
+    </div>
+    <div class="prose">
+      <p>I get asked this constantly. And after years of building ML systems, I still don't have a clean, dinner-party answer.</p>
+      <p>Here's the closest I've got:</p>
+      <p>I build models that make decisions in places where being wrong is expensive — and I spend most of my time making sure they're wrong as rarely, and as cheaply, as possible.</p>
+      <p>People picture the job as training something brilliant. The reality is stranger. <strong>The model is the easy 10%. The other 90% is everything around it.</strong></p>
+      <p>Figuring out what the data is quietly hiding. Knowing when a result is real, and when it's just luck wearing a costume. Designing the system so that when the model fails — and it always eventually does — nothing important breaks with it.</p>
+      <p>The skill nobody warns you about isn't building intelligence. It's refusing to trust it until it's earned the right.</p>
+      <p>That's the part I find genuinely fascinating — and it's the part that never survives into the polished demo. So I'm going to start sharing more of it here. The real texture of building AI for high-stakes work. Failures included. Especially the failures.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Capability</p>
+      <h2>What "end to end" actually means</h2>
+      <p class="lede">Six stages, one owner. This is the lifecycle I run on every project — each stage has explicit gates, artifacts and accountability.</p>
+    </div>
+    <div class="pipe">
+      <div class="stage"><i>01</i><h3>Framing &amp; scoping</h3><p>Translate a business goal into a measurable ML problem — success criteria, constraints, and a delivery plan the team can execute.</p></div>
+      <div class="stage"><i>02</i><h3>Data &amp; pipelines</h3><p>Ingestion and processing for high-frequency and multi-modal data: clean, point-in-time correct, and audit-ready from day one.</p></div>
+      <div class="stage"><i>03</i><h3>Feature engineering</h3><p>Regime-aware feature families designed with domain rationale — not just statistical fit — and tracked through idea-to-decision reports.</p></div>
+      <div class="stage"><i>04</i><h3>Modeling &amp; labeling</h3><p>Deep learning, GANs and LLMs on carefully constructed labels. Baselines first; complexity only where it demonstrably pays.</p></div>
+      <div class="stage"><i>05</i><h3>Validation &amp; governance</h3><p>Look-ahead and leakage checks, pre-run input gates, and per-feature decision reports — everything earns its place with evidence.</p></div>
+      <div class="stage"><i>06</i><h3>Deployment &amp; health</h3><p>Ship low-latency, then monitor decay and regime mismatch with composite health scores. Keep, retrain, or retire — on data, not opinion.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Selected work</p>
+      <h2>One architect, many domains</h2>
+      <p class="lede">Quantitative finance, generative AI, computer vision, environmental research — each taken from first framing to production or publication.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="tag">Quantitative Finance · Current</span>
+        <h3>Algorithmic Trading ML Stack</h3>
+        <p>The full ML stack for a systematic trading firm: low-latency predictive frameworks and time-series models, a regime-aware feature platform (14+ families across six market-regime buckets), GAN-generated synthetic market data for simulation, and LLM pipelines extracting sentiment alpha from unstructured financial streams.</p>
+        <div class="chips"><span class="chip">deep learning</span><span class="chip">time-series</span><span class="chip">GANs</span><span class="chip">LLM alpha</span></div>
+      </article>
+      <article class="card">
+        <span class="tag">Computer Vision · Smart Cities</span>
+        <h3>MOMRA Smart-City AI Engines</h3>
+        <p>13 production AI engines for Saudi Arabia's Ministry of Municipalities: high-accuracy object detection and image segmentation automating urban violation detection and infrastructure monitoring, spatial analytics, and a RAG-based conversational assistant helping millions of citizens navigate public services — optimised for edge-ML and high-concurrency cloud.</p>
+        <div class="chips"><span class="chip">object detection</span><span class="chip">segmentation</span><span class="chip">RAG</span><span class="chip">edge ML</span></div>
+      </article>
+      <article class="card">
+        <span class="tag">Environmental ML · NASA-backed</span>
+        <h3>PM2.5 Forecasting for Megacity Kolkata</h3>
+        <p>Environmental data intelligence at IIT Delhi, backed by NASA: spatio-temporal ML frameworks fusing satellite remote-sensing streams, meteorological inputs and ground-level monitoring to forecast ambient PM2.5 across the Kolkata megacity — published with the American Geophysical Union (AGU).</p>
+        <div class="chips"><span class="chip">spatio-temporal ML</span><span class="chip">remote sensing</span><span class="chip">AGU</span></div>
+      </article>
+      <article class="card">
+        <span class="tag">Governance · AI tooling</span>
+        <h3>ML Governance &amp; Model-Health Framework</h3>
+        <p>A team-wide evaluation harness: pre-run input validation (look-ahead bias, split integrity), four-layer output scoring, and a composite model-health score that flags decay and regime mismatch. Includes agentic-AI workflows that automate code review and reporting for the ML codebase.</p>
+        <div class="chips"><span class="chip">evaluation design</span><span class="chip">agentic AI</span><span class="chip">CI for ML</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Research</p>
+      <h2>Publications</h2>
+    </div>
+    <div class="pub"><span class="yr">2023</span><span class="ti">Prediction of heart disease using a modified hybrid classifier</span><span class="ve">Informatica 47(1)</span></div>
+    <div class="pub"><span class="yr">2023</span><span class="ti">Optimizing dynamic ride sharing with multiple objectives</span><span class="ve">SN Computer Science 4(6)</span></div>
+    <div class="pub"><span class="yr">2024</span><span class="ti">An unmanned automated railway level-crossing traffic control system using ultrasonic and infrared sensors</span><span class="ve">Int. J. Wireless &amp; Mobile Computing 26(4)</span></div>
+    <div class="pub"><span class="yr">2022</span><span class="ti">Forecasting ambient PM2.5 for megacity Kolkata using a machine-learning model</span><span class="ve">AGU Fall Meeting</span></div>
+    <div class="pub"><span class="yr">2022</span><span class="ti">Design of an IoT-based mobile healthcare unit using a self-regulated React.js database and Arduino</span><span class="ve">Springer AICII</span></div>
+    <div class="pub-links">
+      <a class="btn" href="https://scholar.google.com/citations?user=6jcJJqAAAAAJ">All 10 on Google Scholar ↗</a>
+      <a class="btn" href="https://dblp.org/pid/361/2061.html">dblp ↗</a>
+      <a class="btn" href="https://orcid.org/0000-0002-9955-4024">ORCID ↗</a>
+    </div>
+    <p class="pub-note">Selected from 10 publications · ORCID <span class="orcid">0000-0002-9955-4024</span></p>
+  </div>
+</section>
+
+<section id="stack" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Expertise</p>
+      <h2>Core architecture &amp; expertise</h2>
+    </div>
+    <div class="stack">
+      <div class="group"><h3>Algo Trading &amp; Quant Models</h3><ul><li>Predictive frameworks</li><li>Time-series forecasting</li><li>Automated trading strategies</li><li>Regime-aware feature platforms</li><li>Low-latency trading engines</li></ul></div>
+      <div class="group"><h3>Generative AI &amp; Advanced ML</h3><ul><li>GANs &amp; synthetic data</li><li>LLM applications &amp; RAG</li><li>Deep reinforcement learning</li><li>Computer vision &amp; segmentation</li><li>Sentiment-alpha extraction</li></ul></div>
+      <div class="group"><h3>End-to-End ML Architecture</h3><ul><li>System design &amp; execution</li><li>MLOps pipelines</li><li>Real-time, scalable AI serving</li><li>Validation &amp; model-health gates</li><li>Edge &amp; cloud optimisation</li></ul></div>
+      <div class="group"><h3>Technical Leadership</h3><ul><li>R&amp;D pipeline management</li><li>Cross-functional team deployment</li><li>MLOps strategy</li><li>Mentoring &amp; scaling teams</li><li>International stakeholder delivery</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="reveal">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Experience</p>
+      <h2>Where I've built</h2>
+    </div>
+    <div class="xp">
+      <div class="role now">
+        <h3>Lead ML Engineer (R&amp;D) &amp; Head of AI <span class="co">Megaserve Technologies · Full-time · via MERNPLUS</span> <span class="pill">PRESENT</span></h3>
+        <span class="when">Oct 2025 — Present · Jaipur, Rajasthan · On-site</span>
+        <p>Own core architectural decisions, R&amp;D execution and technical strategy for a systematic algorithmic-trading firm — and lead the ML engineering pod that ships it.</p>
+        <p class="deliv-label">Key responsibilities &amp; deliverables</p>
+        <ul class="deliverables">
+          <li><b>Algorithmic trading &amp; quant architecture.</b> Architected a config-driven, multi-strategy portfolio and backtesting engine, with data pipelines spanning NIFTY, NASDAQ, crypto and forex. Built and iterated the flagship NIFTY Regime Mean-Reversion strategy through six versions, alongside quantitative pipelines for volatility-regime and trend-maturity signals.</li>
+          <li><b>Production-grade MLOps &amp; feature engineering.</b> Moved R&amp;D off ad-hoc notebooks onto a structured, versioned feature store (raw source → computed features). Designed the underlying data foundation — managing large-scale local datasets such as 11 years of 1-minute NIFTY — and stood up self-hosted ClearML for rigorous experiment tracking.</li>
+          <li><b>Strategic ML leadership.</b> Turned whiteboard concepts into phased, hour-level execution plans and drove the ML lifecycle from Phase 1 (data assessment &amp; labeling) through Phase 3 (modelling &amp; backtesting), directing the ML engineering pod against industry-standard quant frameworks.</li>
+          <li><b>Advanced &amp; generative modelling.</b> Applying deep learning, diffusion-based synthetic market data, and LLM pipelines to extract sentiment signal from unstructured financial streams — bridging mathematical R&amp;D and low-latency trading engines.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <h3>Senior Consultant → Technical Lead <span class="co">Aaseya</span></h3>
+        <span class="when">Apr 2023 — Oct 2025 · Kolkata · Hybrid</span>
+        <p>Promoted to Technical Lead overseeing end-to-end architecture, development and scaling of 13 specialised AI engines for MOMRA (Saudi Arabia) smart-city initiatives — computer vision, generative NLP and RAG systems, with cross-border delivery to international stakeholders.</p>
+      </div>
+      <div class="role">
+        <h3>Project Scientist <span class="co">Indian Institute of Technology, Delhi</span></h3>
+        <span class="when">May 2022 — Apr 2023 · Delhi · On-site</span>
+        <p>NASA-backed environmental data intelligence: spatio-temporal ML for PM2.5 forecasting over megacity Kolkata, fusing satellite remote sensing with meteorological and ground data — published with the AGU.</p>
+      </div>
+      <div class="role">
+        <h3>Earlier roles <span class="co">Kolkata</span></h3>
+        <span class="when">2020 — 2023</span>
+        <p>Android development (Sikharthy Infotech), website development and IT support (Dynavision Technologies), and business-liaison work with the Calcutta Chamber of Commerce.</p>
+      </div>
+    </div>
+    <div class="edu">
+      <span class="tag">Education</span>
+      <div>
+        <b>Indian Institute of Technology, Delhi</b> <span>— Computer Science</span> <span class="when">· May 2022 — Jul 2023</span>
+        <p>Admitted as a Project Scientist during my master's and completed it at IIT Delhi — advanced spatio-temporal ML research backed by NASA, focused on deep-tech atmospheric modeling and predictive data intelligence.</p>
+      </div>
+      <div>
+        <b>Amity University</b> <span>— Bachelor's &amp; Master of Computer Applications (MCA), Computer Science</span> <span class="when">· 2018 — 2023</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact reveal">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's build something measurable.</h2>
+    <p class="lede">I thrive on pushing the boundaries of what AI can solve. Let's connect to discuss deep-tech R&amp;D, scaling high-performing AI teams, or exchanging insights across any of these fast-evolving domains.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="mailto:rishabhpipalwa@gmail.com">rishabhpipalwa@gmail.com</a>
+      <a class="btn" href="tel:+918420848775">+91 84208 48775</a>
+      <a class="btn" href="https://www.linkedin.com/in/rishabhpipalwa/">linkedin.com/in/rishabhpipalwa ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Rishabh Pipalwa · Howrah, West Bengal, India</span>
+    <span>Single static page · no frameworks · no trackers</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  /* reveal on scroll */
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    els.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:.12});
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  /* hero market sketch — seeded walk, drawn once */
+  var c = document.getElementById("mkt");
+  if (!c || !c.getContext) return;
+  var ctx = c.getContext("2d");
+
+  function series(w, h){
+    var s = 20260707;
+    function rnd(){ s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }
+    var n = 110, pts = [], v = h * 0.66, drift = 0;
+    for (var i = 0; i <= n; i++){
+      drift = drift * 0.86 + (rnd() - 0.485) * h * 0.045;
+      v = Math.max(h * 0.22, Math.min(h * 0.9, v + drift));
+      pts.push([i / n * w, v]);
+    }
+    return pts;
+  }
+
+  function paint(progress){
+    var w = c.clientWidth, h = c.clientHeight, dpr = window.devicePixelRatio || 1;
+    c.width = w * dpr; c.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = "rgba(147,160,180,0.08)";
+    ctx.lineWidth = 1;
+    for (var y = h * 0.18; y < h; y += h * 0.16){
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+    var pts = series(w, h);
+    var upto = Math.max(2, Math.floor(pts.length * progress));
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < upto; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.strokeStyle = "rgba(232,163,61,0.55)";
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+    var last = pts[upto - 1];
+    ctx.lineTo(last[0], h); ctx.lineTo(pts[0][0], h); ctx.closePath();
+    var g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, "rgba(232,163,61,0.10)");
+    g.addColorStop(1, "rgba(232,163,61,0)");
+    ctx.fillStyle = g; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(last[0], last[1], 3, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(232,163,61,0.9)"; ctx.fill();
+  }
+
+  if (reduced){ paint(1); }
+  else {
+    var t0 = null;
+    function frame(t){
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / 1600);
+      paint(1 - Math.pow(1 - p, 3));
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var rs;
+  window.addEventListener("resize", function(){
+    clearTimeout(rs); rs = setTimeout(function(){ paint(1); }, 120);
+  });
+})();
+</script>
+</body>
 </html>
